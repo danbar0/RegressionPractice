@@ -71,4 +71,3 @@ cx.grid()
 cx.set_ylim(0, formatted_polynomial(interval).max()*1.5)
 
 plt.show()
-plt.show()
