@@ -2,10 +2,7 @@ import numpy
 import matplotlib.pyplot as plt
 
 # Source data
-x_data = [1997,
-          1998,
-          1999,
-          2000,
+x_data = [2000,
           2001,
           2002,
           2003,
@@ -26,10 +23,7 @@ x_data = [1997,
           2018,
           2019,
           2020]
-y_data = [100.000,
-          101.308,
-          107.592,
-          107.754,
+y_data = [107.754,
           112.700,
           110.608,
           111.538,
@@ -50,7 +44,7 @@ y_data = [100.000,
           137.005,
           140.743,
           146.396]
-degree = 20
+degree = 5
 
 # Generate regression polynomial
 polynomial_coefficients = numpy.polyfit(x_data, y_data, degree)
@@ -58,14 +52,23 @@ polynomial_coefficients = numpy.polyfit(x_data, y_data, degree)
 # Format polynomial
 formatted_polynomial = numpy.poly1d(polynomial_coefficients)
 
-# Generate data
+# Generate data from first and last entry in array
 interval = numpy.linspace(x_data[0], x_data[-1])
 
-# Configure plots
+# Configure and display plots
 fig, cx = plt.subplots()
+
+# Plot initial dataset
 cx.plot(x_data, y_data, '.k')
+
+#Plot fitted polynomial over linspace interval
 cx.plot(interval, formatted_polynomial(interval), '-g')
+
+# Enable grid lines
 cx.grid()
+
+# Limit default maximum y value to largest polynomial result plus buffer
 cx.set_ylim(0, formatted_polynomial(interval).max()*1.5)
 
+plt.show()
 plt.show()
